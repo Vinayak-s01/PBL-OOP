@@ -1,0 +1,61 @@
+
+#include <iostream>
+using namespace std;
+
+class Arithmetic
+{
+private:
+	int a, b;
+
+public:
+	void getData()
+	{
+		cout << "Enter two numbers: ";
+		cin >> a >> b;
+	}
+
+	void addition()
+	{
+		cout << "Addition = " << a + b << endl;
+	}
+
+	void subtraction()
+	{
+		cout << "Subtraction = " << a - b << endl;
+	}
+
+	void multiplication()
+	{
+		cout << "Multiplication = " << a * b << endl;
+	}
+
+	void division()
+	{
+		if (b != 0)
+			cout << "Division = " << (float)a / b << endl;
+		else
+			cout << "Division by zero is not possible." << endl;
+	}
+
+	void modulus()
+	{
+		if (b != 0)
+			cout << "Modulus = " << a % b << endl;
+		else
+			cout << "Modulus by zero is not possible." << endl;
+	}
+};
+
+int main()
+{
+	Arithmetic obj;
+
+	obj.getData();
+	obj.addition();
+	obj.subtraction();
+	obj.multiplication();
+	obj.division();
+	obj.modulus();
+
+	return 0;
+}
