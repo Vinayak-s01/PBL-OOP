@@ -1,0 +1,53 @@
+#include <iostream>
+
+// First custom namespace
+namespace Distance {
+    int val = 100; // Variable inside Distance namespace
+    
+    void printMessage() {
+        std::cout << "This is the Distance namespace." << std::endl;
+    }
+}
+
+// Second custom namespace using the exact same names
+namespace Weight {
+    int val = 500; // Variable inside Weight namespace
+    
+    void printMessage() {
+        std::cout << "This is the Weight namespace." << std::endl;
+    }
+}
+
+int main() {
+    // METHOD 1: Using the Scope Resolution Operator (::)
+    // This is the safest way to specify exactly which namespace member you want.
+    std::cout << "--- Method 1: Scope Resolution Operator ---" << std::endl;
+    std::cout << "Distance value: " << Distance::val << " meters" << std::endl;
+    std::cout << "Weight value: " << Weight::val << " grams" << std::endl;
+    
+    Distance::printMessage();
+    Weight::printMessage();
+    std::cout << std::endl;
+
+    // METHOD 2: Using the 'using' Declaration
+    // This introduces a specific member into the current scope so you don't have to type the prefix.
+    std::cout << "--- Method 2: 'using' Declaration ---" << std::endl;
+    using Distance::val; 
+    std::cout << "Directly accessing Distance val: " << val << std::endl; 
+    std::cout << std::endl;
+
+    // METHOD 3: Using the 'using namespace' Directive
+    // This imports ALL members of a namespace into the current block scope.
+    std::cout << "--- Method 3: 'using namespace' Directive ---" << std::endl;
+    {
+        using namespace Weight;
+        // inside this block, Weight's printMessage can be called directly
+        printMessage(); 
+        // Note: trying to access 'val' here directly would cause a compile error 
+        // because 'using Distance::val' from outer scope conflicts with Weight::val.
+        std::cout << "Weight val inside block: " << Weight::val << std::endl;
+    }
+
+    return 0;
+}
+
