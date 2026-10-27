@@ -1,0 +1,35 @@
+
+#include <iostream>
+#include <stdexcept>  // For exception handling
+using namespace std;
+
+int main() {
+    int n;
+    unsigned long long fact = 1;
+
+    // Ask the user to enter a number
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    try {
+        // Check whether the number is zero or negative
+        if (n <= 0) {
+            // Throw an exception for invalid input
+            throw invalid_argument("Number must be positive!");
+        }
+
+        // Calculate the factorial of the number
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+
+        // Display the factorial result
+        cout << "Factorial of " << n << " = " << fact << endl;
+    }
+    catch (const invalid_argument& e) {
+        // Handle the exception and display the error message
+        cout << "Exception caught: " << e.what() << endl;
+    }
+
+    return 0;  // End the program
+}
