@@ -1,0 +1,77 @@
+
+#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+public:
+    // Virtual function to calculate perimeter
+    virtual void perimeter() {
+        cout << "Perimeter of shape is undefined." << endl;
+    }
+};
+
+// Derived class Triangle inherits from Shape
+class Triangle : public Shape {
+    float a, b, c;
+
+public:
+    // Constructor to initialize the three sides
+    Triangle(float x, float y, float z) {
+        a = x;
+        b = y;
+        c = z;
+    }
+
+    // Override the virtual perimeter() function
+    void perimeter() override {
+        cout << "Perimeter of Triangle = "
+             << a + b + c << endl;
+    }
+};
+
+// Derived class Square inherits from Shape
+class Square : public Shape {
+    float side;
+
+public:
+    // Constructor to initialize the side
+    Square(float s) {
+        side = s;
+    }
+
+    // Override the virtual perimeter() function
+    void perimeter() override {
+        cout << "Perimeter of Square = "
+             << 4 * side << endl;
+    }
+};
+
+int main() {
+    float a, b, c, side;
+
+    // Get the sides of the triangle from the user
+    cout << "Enter three sides of Triangle: ";
+    cin >> a >> b >> c;
+
+    // Get the side of the square from the user
+    cout << "Enter side of Square: ";
+    cin >> side;
+
+    // Create objects of the derived classes
+    Triangle t(a, b, c);
+    Square s(side);
+
+    // Base class pointers point to derived class objects
+    Shape* ptr;
+
+    // Call Triangle's perimeter() using the base pointer
+    ptr = &t;
+    ptr->perimeter();
+
+    // Call Square's perimeter() using the base pointer
+    ptr = &s;
+    ptr->perimeter();
+
+    return 0;  // End the program
+}
