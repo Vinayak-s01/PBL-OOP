@@ -1,0 +1,86 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class to store employee basic information
+class Employee {
+protected:
+    int empId;
+    string empName;
+    string department;
+
+public:
+    // Function to input employee details
+    void getEmployeeInfo() {
+        cout << "Enter Employee ID: ";
+        cin >> empId;
+
+        cin.ignore();  // Clear the input buffer
+
+        cout << "Enter Employee Name: ";
+        getline(cin, empName);
+
+        cout << "Enter Department: ";
+        getline(cin, department);
+    }
+};
+
+// Base class to store employee training information
+class Training {
+protected:
+    string trainingProgram;
+    int completedPrograms;
+    string certificationStatus;
+
+public:
+    // Function to input training details
+    void getTrainingInfo() {
+        cout << "Enter Training Program Name: ";
+        getline(cin, trainingProgram);
+
+        cout << "Enter Number of Completed Training Programs: ";
+        cin >> completedPrograms;
+
+        // Clear the input buffer before reading another string
+        cin.ignore();
+
+        cout << "Enter Certification Status (Certified/Not Certified): ";
+        getline(cin, certificationStatus);
+    }
+};
+
+// Derived class inherits from both Employee and Training
+class EmployeeTraining : public Employee, public Training {
+public:
+    // Function to display employee and training details
+    void displayInfo() {
+        cout << "\n--- Employee Information ---" << endl;
+        cout << "Employee ID: " << empId << endl;
+        cout << "Employee Name: " << empName << endl;
+        cout << "Department: " << department << endl;
+
+        cout << "\n--- Training Information ---" << endl;
+        cout << "Training Program: " << trainingProgram << endl;
+        cout << "Completed Training Programs: "
+             << completedPrograms << endl;
+        cout << "Certification Status: "
+             << certificationStatus << endl;
+    }
+};
+
+int main() {
+    // Create an object of the derived class
+    EmployeeTraining emp;
+
+    // Input basic employee information
+    emp.getEmployeeInfo();
+
+    // Input training information
+    emp.getTrainingInfo();
+
+    // Display all employee and training details
+    emp.displayInfo();
+
+    return 0;  // End the program
+}
